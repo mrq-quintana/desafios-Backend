@@ -1,26 +1,20 @@
 [
-     {
-          "id": "1",
-          "title": "Lupi",
-          "price": "1500",
-          "image": "Ruta Imagen2"
-     },
-     {
-          "id": "2",
-          "title": "Lupa",
-          "price": "1500",
-          "image": "Ruta Imagen2"
-     },
-     {
-          "id": "3",
-          "title": "Lupano",
-          "price": "1500",
-          "image": "Ruta Imagen2"
-     },
-     {
-          "id": "4",
-          "title": "Lupanocho",
-          "price": "1500",
-          "image": "Ruta Imagen2"
-     }
+  {
+    "id": "2",
+    "title": "Lupp",
+    "price": "1500",
+    "image": "Ruta Imagen2"
+  },
+  {
+    "id": "1",
+    "title": "Lupo",
+    "price": "1500",
+    "image": "Ruta Imagen2"
+  }
+]  {
+    "id": "3",
+    "title": "Lupu",
+    "price": "1500",
+    "image": "Ruta Imagen2"
+  }
 ]
