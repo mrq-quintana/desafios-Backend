@@ -2,15 +2,18 @@ const Contenedor = require('../index');
 
 const contenedor = new Contenedor();
 
-// contenedor.save(
-//                 {title:"L" , 
-//                 price:"1500" , 
-//                 image:"Ruta Imagen2" , 
-//                 id:"4"}
+contenedor.save(
+                {
+                title: 'Escuadra',                                                                                                                                 
+                price: 123.45,                                                                                                                                     
+                image: 'https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png', 
+                
+                }
 
-//                 ).then(result=>{
-//                 console.log(result.message);
-//                 })
+                ).then(result=>{
+                console.log(result.message);
+                })
+
 
 // contenedor.getById('3').then(result=>{
 //         console.log(result.product)
@@ -27,8 +30,7 @@ const contenedor = new Contenedor();
 //     console.log(result.product)
 //     })
         
-contenedor.deleteAll().then(result=>{
-    
-        console.log(result.message);
-    })    
+// contenedor.deleteAll().then(result=>{ 
+//         console.log(result.message);
+//     })    
         

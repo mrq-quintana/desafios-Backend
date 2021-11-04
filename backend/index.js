@@ -9,7 +9,7 @@ class Contenedor {
         return { message: "El producto ya existe" };
       } else {
         let productos = {
-          id: product.id,
+          id: (infoJson.length + 1),
           title: product.title,
           price: product.price,
           image: product.image,
