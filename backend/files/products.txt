@@ -1,0 +1,26 @@
+[
+     {
+          "id": "1",
+          "title": "Lupi",
+          "price": "1500",
+          "image": "Ruta Imagen2"
+     },
+     {
+          "id": "2",
+          "title": "Lupa",
+          "price": "1500",
+          "image": "Ruta Imagen2"
+     },
+     {
+          "id": "3",
+          "title": "Lupano",
+          "price": "1500",
+          "image": "Ruta Imagen2"
+     },
+     {
+          "id": "4",
+          "title": "Lupanocho",
+          "price": "1500",
+          "image": "Ruta Imagen2"
+     }
+]
