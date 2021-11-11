@@ -16,7 +16,7 @@ app.get('/',(req,res)=>{
 
 app.get('/productos',(req,res)=>{
     contenedor.getAll().then((result)=>{
-        res.send(result.product);
+        res.send(result);
     })
 })
 
@@ -27,7 +27,8 @@ app.get('/productos/:id', (req,res)=>{
     })
 })
 app.get('/productRandom', (req,res)=>{
-    contenedor.getAll().then((result)=>{
+    contenedor.getRandom().then((result)=>{
         res.send(result.product);
     })
+    
 })

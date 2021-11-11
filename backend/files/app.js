@@ -33,4 +33,7 @@ contenedor.save(
 // contenedor.deleteAll().then(result=>{ 
 //         console.log(result.message);
 //     })    
-        
+// contenedor.getRandom().then(result=>{
+//             console.log(result.product)
+//             console.log(result.message);
+//         })

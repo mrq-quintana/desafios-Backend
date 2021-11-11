@@ -102,6 +102,22 @@ class Contenedor {
       };
     }
   }
+  async getRandom() {
+    let info = await fs.promises.readFile("../backend/files/products.txt", "utf-8");
+    let infoJson = JSON.parse(info);
+    let idRandom = (Math.ceil(Math.random()*infoJson.length)).toString();
+    
+    let infoId = infoJson.filter((i) => i.id === idRandom);
+
+    if (infoId) {
+      return {product: infoId, message: "Id encontrado" };
+    } else {
+      return {
+        message: "No se pudo aencontrar Id ",
+      };
+    }
+
+  }
   async deleteAll() {
     let info = await fs.promises.readFile("../backend/files/products.txt", "utf-8");
     let infoJson = JSON.parse(info);
