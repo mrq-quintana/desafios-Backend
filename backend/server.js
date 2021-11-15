@@ -16,7 +16,8 @@ app.get('/',(req,res)=>{
 
 app.get('/productos',(req,res)=>{
     contenedor.getAll().then((result)=>{
-        res.send(result);
+        res.send(result.product);
+        console.log(result.message);
     })
 })
 
@@ -24,11 +25,13 @@ app.get('/productos/:id', (req,res)=>{
     const usuarioId = req.params.id;
     contenedor.getById(usuarioId).then((result)=>{
         res.send(result.product);
+        console.log(result.message);
     })
 })
 app.get('/productRandom', (req,res)=>{
     contenedor.getRandom().then((result)=>{
         res.send(result.product);
+        console.log(result.message);
     })
     
 })

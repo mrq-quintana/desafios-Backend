@@ -60,8 +60,7 @@ class Contenedor {
       return {product: infoId, message: "Id encontrado" };
     } else {
       return {
-        product: infoJson,
-        message: "No se pudo aencontrar Id ",
+        message: "No se pudo encontrar Id ",
       };
     }
   }
@@ -110,7 +109,7 @@ class Contenedor {
     let infoId = infoJson.filter((i) => i.id === idRandom);
 
     if (infoId) {
-      return {product: infoId, message: "Id encontrado" };
+      return {product: infoId, message: "Id random encontrado" };
     } else {
       return {
         message: "No se pudo aencontrar Id ",
