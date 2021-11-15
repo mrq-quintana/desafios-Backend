@@ -11,7 +11,7 @@ const server = app.listen(PORT,()=>{
 
 
 app.get('/',(req,res)=>{
-    res.send('Hola mundo')
+    res.send('Bienvenidos a la app')
 })
 
 app.get('/productos',(req,res)=>{
