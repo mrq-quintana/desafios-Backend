@@ -2,13 +2,12 @@ const express = require('express');
 const Contenedor = require('../backend/classes/index');
 const app = express();
 const PORT = process.env.PORT||8080;
-
 const contenedor = new Contenedor();
-
 const server = app.listen(PORT,()=>{
     console.log("Escuchando en puerto " + PORT)
 });
-
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 app.get('/',(req,res)=>{
     res.send('Bienvenidos a la app')
@@ -34,4 +33,8 @@ app.get('/productRandom', (req,res)=>{
         console.log(result.message);
     })
     
+})
+
+app.post('/productos',(req,res)=>{
+    contenedor.save
 })

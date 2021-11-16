@@ -22,7 +22,7 @@ class Contenedor {
             "../files/products.txt",
             JSON.stringify(infoJson, null, 2)
           );
-          return {message: "Producto agregado" };
+          return { message: "Producto agregado" };
         } catch (error) {
           return {
             message: "No se pudo agregar Producto" + error,
@@ -57,7 +57,7 @@ class Contenedor {
     let infoId = infoJson.find((i) => i.id === id);
 
     if (infoId) {
-      return {product: infoId, message: "Id encontrado" };
+      return { product: infoId, message: "Id encontrado" };
     } else {
       return {
         message: "No se pudo encontrar Id ",
@@ -104,12 +104,12 @@ class Contenedor {
   async getRandom() {
     let info = await fs.promises.readFile("../backend/files/products.txt", "utf-8");
     let infoJson = JSON.parse(info);
-    let idRandom = (Math.ceil(Math.random()*infoJson.length)).toString();
-    
+    let idRandom = (Math.ceil(Math.random() * infoJson.length)).toString();
+
     let infoId = infoJson.filter((i) => i.id === idRandom);
 
     if (infoId) {
-      return {product: infoId, message: "Id random encontrado" };
+      return { product: infoId, message: "Id random encontrado" };
     } else {
       return {
         message: "No se pudo aencontrar Id ",
