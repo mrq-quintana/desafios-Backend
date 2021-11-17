@@ -3,10 +3,12 @@ const fs = require("fs");
 class Contenedor {
   async save(product) {
     try {
-      let info = await fs.promises.readFile("../backend/files/products.txt", "utf-8");
+      let info = await fs.promises.readFile("./files/products.txt", "utf-8");
       let infoJson = JSON.parse(info);
-      if (infoJson.some((i) => i.title === product.title)) {
-        return { message: "El producto ya existe" };
+      if (infoJson.filter((i) => i.title === product.title)) {
+        return { 
+          prod:infoSome,
+          message: "El producto ya existe" };
       } else {
         let productos = {
           id: (infoJson.length + 1).toString(),
@@ -18,7 +20,7 @@ class Contenedor {
         infoJson.push(productos);
 
         try {
-          await fs.promises.writeFile("../backend/files/products.txt", JSON.stringify(infoJson, null, 2));
+          await fs.promises.writeFile("./files/products.txt", JSON.stringify(infoJson, null, 2));
           return { 
             message: "Producto agregado" };
         } catch (error) {
@@ -34,7 +36,7 @@ class Contenedor {
         image: product.image,
       };
       try {
-        await fs.promises.writeFile("../backend/files/products.txt", JSON.stringify([productos]), null,2);
+        await fs.promises.writeFile("./files/products.txt", JSON.stringify([productos]), null,2);
         return { message: "Producto agregado ya" };
       } catch (error) {
         return {

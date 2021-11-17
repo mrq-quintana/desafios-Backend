@@ -6,7 +6,7 @@ const server = app.listen(PORT,()=>{
     console.log("Escuchando en puerto " + PORT)
 });
 
-const Contenedor = require('../backend/classes/index');
+const Contenedor = require('./classes/contenedor');
 const contenedor = new Contenedor();
 
 const productRouter = require('./routes/productRoute');
@@ -32,10 +32,11 @@ app.get('/api/productRandom', (req,res)=>{
 
 //POSTS
 app.post('/api/productos',(req,res)=>{
-    let product = req.body;
-    // console.log(product);
-    contenedor.save(product).then(result=>{
-        res.send(result.message)
+    let pro = req.body;
+    console.log(pro);
+    contenedor.save(pro).then(result=>{
+        res.send(result.prod)
         console.log(result.message);
+        console.log(result);
     })
 })
