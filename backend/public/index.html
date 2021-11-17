@@ -10,21 +10,18 @@
 
 <body>
     <div>
-        <form id="productForm" name="productForm">
-    
-            
-    
-                <p><label for="name">Nombre o Titulo: <input type="text" name="title"></label></p>
-                <p><label for="price">Precio de producto: <input type="text" name="price"></label></p>
-                <p><label for="image">Url de Imagen: <input type="text" name="image"></label></p>
-    
-            
-    
-            <button type="submit" value="Guardar">Guardar</button>
-    
+        <form id="formProduct" name="formProduct">
+                <label for="title">Nombre o Titulo: </label>
+                <input type="text" name="title" required>
+                <label for="price">Precio de producto:</label> 
+                <input type="number" name="price" required>
+                <label for="image">Url de Imagen:</label>
+                <input name="image">
+                <button type="submit" value="Guardar">Guardar</button>
         </form>
     </div>
-    <script type="text/javascript" src="index.js"></script>
+
+    <script type="text/javascript" src="./index.js"></script>
 </body>
 
 </html>

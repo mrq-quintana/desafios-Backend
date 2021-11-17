@@ -19,14 +19,16 @@ router.get('/:id', (req,res)=>{
     })
 })
 
-// router.post('/',(req,res)=>{
-//     let pro = req.body;
-//     console.log(pro);
-//     contenedor.save(pro).then(result=>{
-//         res.send(result.prod)
-//         console.log(result.message);
-//         console.log(result.prod);
-//     })
-// })
+router.post('/',(req, res)=>{
+
+    let p = req.body;
+    console.log(p); //Viene vacio
+
+    contenedor.saveProduct(p).then(result=>{
+        res.send(result)
+        console.log(result.message);
+        console.log(result.prod);
+    })
+})
 
 module.exports = router;

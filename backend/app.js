@@ -12,10 +12,11 @@ const contenedor = new Contenedor();
 const productRouter = require('./routes/productRoute');
 
 app.use(express.json());
+app.use(cors());
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('/public'));
 app.use('/api/productos',productRouter);
-app.use(cors());
+
 
 //GETS
 app.get('/',(req,res)=>{
@@ -28,15 +29,4 @@ app.get('/api/productRandom', (req,res)=>{
         console.log(result.message);
     })
     
-})
-
-//POSTS
-app.post('/api/productos',(req,res)=>{
-    let pro = req.body;
-    console.log(pro);
-    contenedor.save(pro).then(result=>{
-        res.send(result.prod)
-        console.log(result.message);
-        console.log(result);
-    })
 })
