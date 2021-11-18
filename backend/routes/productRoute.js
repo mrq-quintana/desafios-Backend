@@ -20,7 +20,6 @@ router.get('/:id', (req,res)=>{
 })
 //POST
 router.post('/',(req, res)=>{
-
     let productoAgregar = req.body;
     contenedor.saveProduct(productoAgregar).then(result=>{
         res.send(result)
@@ -34,6 +33,15 @@ router.delete('/:id', (req,res)=>{
     contenedor.deleteById(usuarioId).then((result)=>{
         res.send(result.product);
         console.log(result.message);
+    })
+})
+
+//PUT
+router.put('/:pid',(req,res)=>{
+    let body = req.body;
+    let id = parseInt(req.params.pid);
+    contenedor.updateProduct(id,body).then(result=>{
+        res.send(result);
     })
 })
 
