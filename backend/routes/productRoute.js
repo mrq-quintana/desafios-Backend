@@ -18,12 +18,21 @@ router.get('/:id', (req,res)=>{
         console.log(result.message);
     })
 })
-
+//POST
 router.post('/',(req, res)=>{
 
     let productoAgregar = req.body;
     contenedor.saveProduct(productoAgregar).then(result=>{
         res.send(result)
+        console.log(result.message);
+    })
+})
+
+//DELETE
+router.delete('/:id', (req,res)=>{
+    const usuarioId = req.params.id;
+    contenedor.deleteById(usuarioId).then((result)=>{
+        res.send(result.product);
         console.log(result.message);
     })
 })

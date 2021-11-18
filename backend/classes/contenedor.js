@@ -79,15 +79,16 @@ class Contenedor {
     let info = await fs.promises.readFile("../backend/files/products.txt", "utf-8");
     let infoJson = JSON.parse(info);
     let infoId = infoJson.filter((i) => i.id !== id);
+    let infoIdEliminado = infoJson.filter((i) => i.id === id);
 
     if (infoJson.find((i) => i.id === id)) {
       await fs.promises.writeFile(
-        "../files/products.txt",
+        "../backend/files/products.txt",
         JSON.stringify(infoId, null, 2)
       );
       return {
-        product: infoId,
-        message: "Producto eliminado",
+        product: infoIdEliminado,
+        message: "Producto "+ id + " eliminado",
       };
     } else {
       return {
