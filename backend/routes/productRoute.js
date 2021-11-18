@@ -21,13 +21,10 @@ router.get('/:id', (req,res)=>{
 
 router.post('/',(req, res)=>{
 
-    let p = req.body;
-    console.log(p); //Viene vacio
-
-    contenedor.saveProduct(p).then(result=>{
+    let productoAgregar = req.body;
+    contenedor.saveProduct(productoAgregar).then(result=>{
         res.send(result)
         console.log(result.message);
-        console.log(result.prod);
     })
 })
 

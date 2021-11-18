@@ -1,26 +1,26 @@
 const fs = require("fs");
 
 class Contenedor {
-  async saveProduct(product) {
+  async saveProduct(productoAgregar) {
     try {
-      let info = await fs.promises.readFile("./files/products.txt", "utf-8");
+      let info = await fs.promises.readFile("../backend/files/products.txt", "utf-8");
       let infoJson = JSON.parse(info);
       
-      if (infoJson.filter((i) => i.title === product.title)) {
+      if (infoJson.some((i) => i.title === productoAgregar.title)) {
         return { 
-          message: "El producto ya existe" };
+          message: 'El producto '+ productoAgregar.title +' ya existe' };
       } else {
         let productos = {
           id: (infoJson.length + 1).toString(),
-          title: product.title,
-          price: product.price,
-          image: product.image,
+          title: productoAgregar.title,
+          price: productoAgregar.price,
+          image: productoAgregar.image,
         };
 
         infoJson.push(productos);
-
+        
         try {
-          await fs.promises.writeFile("./files/products.txt", JSON.stringify(infoJson, null, 2));
+          await fs.promises.writeFile("../backend/files/products.txt", JSON.stringify(infoJson, null, 2));
           return { 
             message: "Producto agregado" };
         } catch (error) {
@@ -31,13 +31,13 @@ class Contenedor {
     } catch (error) {
       let productos = {
         id: "1",
-        title: product.title,
-        price: product.price,
-        image: product.image,
+        title: productoAgregar.title,
+        price: productoAgregar.price,
+        image: productoAgregar.image,
       };
       
       try {
-        await fs.promises.writeFile("./files/products.txt", JSON.stringify([productos]), null,2);
+        await fs.promises.writeFile("../backend/files/products.txt", JSON.stringify([productos]), null,2);
         return { prod:productos, message: "Producto agregado ya" };
       } catch (error) {
         return {
