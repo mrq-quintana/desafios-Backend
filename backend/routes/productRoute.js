@@ -39,7 +39,7 @@ router.delete('/:id', (req,res)=>{
 //PUT
 router.put('/:pid',(req,res)=>{
     let body = req.body;
-    let id = parseInt(req.params.pid);
+    let id = req.params.pid;
     contenedor.updateProduct(id,body).then(result=>{
         res.send(result);
     })

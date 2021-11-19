@@ -1,32 +1,14 @@
 [
   {
+    "id": "1",
+    "title": "ya pude actualizarlo",
+    "price": "123456",
+    "image": "notebooking.jpg"
+  },
+  {
     "id": "2",
-    "title": "chau",
-    "price": "2600",
-    "image": "notebook.jpg"
-  },
-  {
-    "id": "3",
-    "title": "comoestas",
-    "price": "2600",
-    "image": "notebook.jpg"
-  },
-  {
-    "id": "6",
-    "title": "rubil",
-    "price": "2600",
-    "image": "notebook.jpg"
-  },
-  {
-    "id": "7",
-    "title": "rubilm",
-    "price": "2600",
-    "image": "notebook.jpg"
-  },
-  {
-    "id": "8",
-    "title": "rubilmh",
-    "price": "2600",
-    "image": "notebook.jpg"
+    "title": "hola",
+    "price": "123456",
+    "image": "notebooking.jpg"
   }
 ]

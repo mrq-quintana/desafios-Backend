@@ -128,37 +128,34 @@ class Contenedor {
     }
   }
 
-//   async updatePet(id,body){
-//     try{
-//         let info = await fs.promises.readFile('../backend/files/products.txt','utf-8');
-//         let infoJson = JSON.parse(data);
-//         if(!infoJson.some(product=>product.id===id)) return {status:"error", message:"No hay mascotas con el id especificado"}
-//         let result = infoJson.map(product>{
-//             if(product.id===id){
-//                 if(product.adopted){
-//                     body = Object.assign(body)
-//                     body = Object.assign({id:product.id,...body});
-//                     return body;
-//                 }
-//                 else{
-//                     body = Object.assign(body,{adopted:false})
-//                     body = Object.assign({id:id,...body})
-//                     return body;
-//                 }
-//             }else{
-//                 return pet;
-//             }
-//         })
-//         try{
-//             await fs.promises.writeFile('../backend/files/products.txt',JSON.stringify(result,null,2));
-//             return {status:"success", message:"Mascota actualizada"}
-//         }catch{
-//             return {status:"error", message:"Error al actualizar la mascota"}
-//         }
-//     }catch(error){
-//         return {status:"error",message:"Fallo al actualizar la mascota: "+error}
-//     }
-// }
+  async updateProduct(id,body){
+    
+    try{
+        let info = await fs.promises.readFile('../backend/files/products.txt','utf-8');
+        let infoJson = JSON.parse(info);
+        
+        if(id){
+          infoJson.forEach((product)=>{
+              if(id===product.id){ 
+                      product.title = body.title,  
+                      product.price = body.price,
+                      product.image = body.image
+              } 
+              })
+          try{
+              await fs.promises.writeFile('../backend/files/products.txt',JSON.stringify(infoJson,null,2));
+              return {status:"success", message:"Producto actualizado"}
+          }catch{
+              return {status:"error", message:"Error al actualizar el producto"}
+          }
+        }else{
+          return {status:"error",message:"Fallo al actualizar el producto"}
+
+        }
+    }
+    catch{
+    }
+}
 }
 
 module.exports = Contenedor;
