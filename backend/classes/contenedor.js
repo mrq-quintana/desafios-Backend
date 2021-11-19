@@ -5,10 +5,11 @@ class Contenedor {
     try {
       let info = await fs.promises.readFile("../backend/files/products.txt", "utf-8");
       let infoJson = JSON.parse(info);
-      
+
       if (infoJson.some((i) => i.title === productoAgregar.title)) {
-        return { 
-          message: 'El producto '+ productoAgregar.title +' ya existe' };
+        return {
+          message: 'El producto ' + productoAgregar.title + ' ya existe'
+        };
       } else {
         let productos = {
           id: (infoJson.length + 1).toString(),
@@ -18,14 +19,16 @@ class Contenedor {
         };
 
         infoJson.push(productos);
-        
+
         try {
           await fs.promises.writeFile("../backend/files/products.txt", JSON.stringify(infoJson, null, 2));
-          return { 
-            message: "Producto agregado" };
+          return {
+            message: "Producto agregado"
+          };
         } catch (error) {
           return {
-            message: "No se pudo agregar Producto " + error};
+            message: "No se pudo agregar Producto " + error
+          };
         }
       }
     } catch (error) {
@@ -35,10 +38,10 @@ class Contenedor {
         price: productoAgregar.price,
         image: productoAgregar.image,
       };
-      
+
       try {
-        await fs.promises.writeFile("../backend/files/products.txt", JSON.stringify([productos]), null,2);
-        return { prod:productos, message: "Producto agregado ya" };
+        await fs.promises.writeFile("../backend/files/products.txt", JSON.stringify([productos]), null, 2);
+        return { prod: productos, message: "Producto agregado ya" };
       } catch (error) {
         return {
           message: "No se pudo agregar Producto " + error,
@@ -88,7 +91,7 @@ class Contenedor {
       );
       return {
         product: infoIdEliminado,
-        message: "Producto "+ id + " eliminado",
+        message: "Producto " + id + " eliminado",
       };
     } else {
       return {
@@ -128,34 +131,31 @@ class Contenedor {
     }
   }
 
-  async updateProduct(id,body){
-    
-    try{
-        let info = await fs.promises.readFile('../backend/files/products.txt','utf-8');
-        let infoJson = JSON.parse(info);
-        
-        if(id){
-          infoJson.forEach((product)=>{
-              if(id===product.id){ 
-                      product.title = body.title,  
-                      product.price = body.price,
-                      product.image = body.image
-              } 
-              })
-          try{
-              await fs.promises.writeFile('../backend/files/products.txt',JSON.stringify(infoJson,null,2));
-              return {status:"success", message:"Producto actualizado"}
-          }catch{
-              return {status:"error", message:"Error al actualizar el producto"}
+  async updateProduct(id, body) {
+      let info = await fs.promises.readFile('../backend/files/products.txt', 'utf-8');
+      let infoJson = JSON.parse(info);
+      let infoId = infoJson.find((i) => i.id === id);
+      if (infoId) {
+        if (id) {
+          infoJson.forEach((product) => {
+            if (id === product.id) {
+              product.title = body.title,
+                product.price = body.price,
+                product.image = body.image
+            }
+          })
+          try {
+            await fs.promises.writeFile('../backend/files/products.txt', JSON.stringify(infoJson, null, 2));
+            return {  message: "Producto actualizado" }
+          } catch {
+            return { message: "Error al actualizar el producto" }
           }
-        }else{
-          return {status:"error",message:"Fallo al actualizar el producto"}
-
         }
+      }
+    else {
+      return {message: "No se encontro id para actualizar el producto" }
     }
-    catch{
-    }
-}
+  }
 }
 
 module.exports = Contenedor;

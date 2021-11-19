@@ -1,13 +1,13 @@
 [
   {
     "id": "1",
-    "title": "ya pude actualizarlo",
+    "title": "prueba",
     "price": "123456",
     "image": "notebooking.jpg"
   },
   {
     "id": "2",
-    "title": "hola",
+    "title": "ya pude actualizarlo",
     "price": "123456",
     "image": "notebooking.jpg"
   }
