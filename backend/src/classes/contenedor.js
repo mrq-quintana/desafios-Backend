@@ -3,7 +3,7 @@ const fs = require("fs");
 class Contenedor {
   async saveProduct(productoAgregar) {
     try {
-      let info = await fs.promises.readFile("../backend/files/products.txt", "utf-8");
+      let info = await fs.promises.readFile("./src/files/products.txt", "utf-8");
       let infoJson = JSON.parse(info);
 
       if (infoJson.some((i) => i.title === productoAgregar.title)) {
@@ -12,7 +12,7 @@ class Contenedor {
         };
       } else {
         let productos = {
-          id: (infoJson.length + 1).toString(),
+          id: parseInt(infoJson.length + 1),
           title: productoAgregar.title,
           price: productoAgregar.price,
           image: productoAgregar.image,
@@ -21,7 +21,7 @@ class Contenedor {
         infoJson.push(productos);
 
         try {
-          await fs.promises.writeFile("../backend/files/products.txt", JSON.stringify(infoJson, null, 2));
+          await fs.promises.writeFile("./src/files/products.txt", JSON.stringify(infoJson, null, 2));
           return {
             message: "Producto agregado"
           };
@@ -33,14 +33,14 @@ class Contenedor {
       }
     } catch (error) {
       let productos = {
-        id: "1",
+        id: 1,
         title: productoAgregar.title,
         price: productoAgregar.price,
         image: productoAgregar.image,
       };
 
       try {
-        await fs.promises.writeFile("../backend/files/products.txt", JSON.stringify([productos]), null, 2);
+        await fs.promises.writeFile("./src/files/products.txt", JSON.stringify([productos]), null, 2);
         return { prod: productos, message: "Producto agregado ya" };
       } catch (error) {
         return {
@@ -50,7 +50,7 @@ class Contenedor {
     }
   }
   async getById(id) {
-    let info = await fs.promises.readFile("../backend/files/products.txt", "utf-8");
+    let info = await fs.promises.readFile("./src/files/products.txt", "utf-8");
     let infoJson = JSON.parse(info);
     let infoId = infoJson.find((i) => i.id === id);
 
@@ -63,7 +63,7 @@ class Contenedor {
     }
   }
   async getAll() {
-    let info = await fs.promises.readFile("../backend/files/products.txt", "utf-8");
+    let info = await fs.promises.readFile("./src/files/products.txt", "utf-8");
     let infoJson = JSON.parse(info);
 
     if (infoJson !== []) {
@@ -79,14 +79,14 @@ class Contenedor {
     }
   }
   async deleteById(id) {
-    let info = await fs.promises.readFile("../backend/files/products.txt", "utf-8");
+    let info = await fs.promises.readFile("./src/files/products.txt", "utf-8");
     let infoJson = JSON.parse(info);
     let infoId = infoJson.filter((i) => i.id !== id);
     let infoIdEliminado = infoJson.filter((i) => i.id === id);
 
     if (infoJson.find((i) => i.id === id)) {
       await fs.promises.writeFile(
-        "../backend/files/products.txt",
+        "./src/files/products.txt",
         JSON.stringify(infoId, null, 2)
       );
       return {
@@ -101,7 +101,7 @@ class Contenedor {
     }
   }
   async getRandom() {
-    let info = await fs.promises.readFile("../backend/files/products.txt", "utf-8");
+    let info = await fs.promises.readFile("./src/files/products.txt", "utf-8");
     let infoJson = JSON.parse(info);
     let idRandom = (Math.ceil(Math.random() * infoJson.length)).toString();
 
@@ -117,12 +117,12 @@ class Contenedor {
 
   }
   async deleteAll() {
-    let info = await fs.promises.readFile("../backend/files/products.txt", "utf-8");
+    let info = await fs.promises.readFile("./src/files/products.txt", "utf-8");
     let infoJson = JSON.parse(info);
 
     if (infoJson !== []) {
       fs.promises.writeFile(
-        "../files/products.txt",
+        "./src/files/products.txt",
         JSON.stringify((infoJson = []), null, 2)
       );
       return {
@@ -131,7 +131,7 @@ class Contenedor {
     }
   }
   async updateProduct(id, body) {
-    let info = await fs.promises.readFile('../backend/files/products.txt', 'utf-8');
+    let info = await fs.promises.readFile('./src/files/products.txt', 'utf-8');
     let infoJson = JSON.parse(info);
     let infoId = infoJson.find((i) => i.id === id);
     if (infoId) {
@@ -144,7 +144,7 @@ class Contenedor {
           }
         })
         try {
-          await fs.promises.writeFile('../backend/files/products.txt', JSON.stringify(infoJson, null, 2));
+          await fs.promises.writeFile('./src/files/products.txt', JSON.stringify(infoJson, null, 2));
           return { message: "Producto actualizado" }
         } catch {
           return { message: "Error al actualizar el producto" }
