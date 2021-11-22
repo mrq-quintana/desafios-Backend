@@ -130,30 +130,29 @@ class Contenedor {
       };
     }
   }
-
   async updateProduct(id, body) {
-      let info = await fs.promises.readFile('../backend/files/products.txt', 'utf-8');
-      let infoJson = JSON.parse(info);
-      let infoId = infoJson.find((i) => i.id === id);
-      if (infoId) {
-        if (id) {
-          infoJson.forEach((product) => {
-            if (id === product.id) {
-              product.title = body.title,
-                product.price = body.price,
-                product.image = body.image
-            }
-          })
-          try {
-            await fs.promises.writeFile('../backend/files/products.txt', JSON.stringify(infoJson, null, 2));
-            return {  message: "Producto actualizado" }
-          } catch {
-            return { message: "Error al actualizar el producto" }
+    let info = await fs.promises.readFile('../backend/files/products.txt', 'utf-8');
+    let infoJson = JSON.parse(info);
+    let infoId = infoJson.find((i) => i.id === id);
+    if (infoId) {
+      if (id) {
+        infoJson.forEach((product) => {
+          if (id === product.id) {
+            product.title = body.title,
+              product.price = body.price,
+              product.image = body.image
           }
+        })
+        try {
+          await fs.promises.writeFile('../backend/files/products.txt', JSON.stringify(infoJson, null, 2));
+          return { message: "Producto actualizado" }
+        } catch {
+          return { message: "Error al actualizar el producto" }
         }
       }
+    }
     else {
-      return {message: "No se encontro id para actualizar el producto" }
+      return { message: "No se encontro id para actualizar el producto" }
     }
   }
 }
