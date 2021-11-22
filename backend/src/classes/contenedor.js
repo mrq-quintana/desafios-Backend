@@ -15,7 +15,8 @@ class Contenedor {
           id: parseInt(infoJson.length + 1),
           title: productoAgregar.title,
           price: productoAgregar.price,
-          image: productoAgregar.image,
+          description: productoAgregar.description,
+          thumbnail :productoAgregar.thumbnail,
         };
 
         infoJson.push(productos);
@@ -36,7 +37,8 @@ class Contenedor {
         id: 1,
         title: productoAgregar.title,
         price: productoAgregar.price,
-        image: productoAgregar.image,
+        description: productoAgregar.description,
+        thumbnail :productoAgregar.thumbnail,
       };
 
       try {

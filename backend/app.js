@@ -15,7 +15,7 @@ const products = require('./src/routes/products');
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cors());
-app.use('/public',express.static(__dirname+'/public'));
+app.use('/imagenes',express.static(__dirname+'/public'));
 app.use((req,res,next)=>{
     let timestamp = Date.now();
     let time = new Date(timestamp);
@@ -39,8 +39,8 @@ app.get('/api/productRandom', (req,res)=>{
 })
 
 //POST
-app.post('/api/uploadfile',upload.array('img'),(req,res)=>{
-    const files = req.files;
+app.post('/api/uploadfile',upload.single('img'),(req,res)=>{
+    const files = req.file; 
     console.log(files);
     if(!files||files.length === 0){
         res.status(500).send({message: 'Error al subir archivo'})

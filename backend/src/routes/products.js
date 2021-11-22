@@ -20,8 +20,11 @@ router.get('/:id', (req,res)=>{
     })
 })
 //POST
-router.post('/',(req, res)=>{
+router.post('/',upload.single('img'),(req, res)=>{
     let productoAgregar = req.body;
+    productoAgregar.price = parseInt(productoAgregar.price);
+    let thumbnail = 'http://localhost:8080/imagenes/images/'+req.file.filename;
+    productoAgregar.thumbnail = thumbnail;
     contenedor.saveProduct(productoAgregar).then(result=>{
         res.send(result)
         console.log(result.message);

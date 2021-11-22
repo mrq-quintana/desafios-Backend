@@ -5,7 +5,7 @@ document.addEventListener(`submit`, event=>{
         let objAgregar={
             title: data.get('title'),
             price: data.get('price'),
-            image: data.get('image')
+            description: data.get('description')
         }
         fetch('http://localhost:8080/api/productos', {
             method:'POST',
