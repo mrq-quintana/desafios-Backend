@@ -1,7 +1,7 @@
-const express = require('express');
+import express from 'express';
+import upload from '../service/upload.js';
+import Contenedor from '../classes/contenedor.js';
 const router = express.Router();
-const upload = require('../service/upload')
-const Contenedor = require('../classes/contenedor');
 const contenedor = new Contenedor();
 
 //GET
@@ -50,4 +50,4 @@ router.put('/:pid',(req,res)=>{
     })
 })
 
-module.exports = router;
+export default router;

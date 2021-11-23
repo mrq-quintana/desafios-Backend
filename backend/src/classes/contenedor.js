@@ -1,4 +1,4 @@
-const fs = require("fs");
+import fs from 'fs';
 
 class Contenedor {
   async saveProduct(productoAgregar) {
@@ -159,4 +159,4 @@ class Contenedor {
   }
 }
 
-module.exports = Contenedor;
+export default Contenedor;
