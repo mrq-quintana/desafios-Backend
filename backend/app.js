@@ -12,8 +12,10 @@ const server = app.listen(PORT,()=>{
 const contenedor = new Contenedor();
 
 app.engine('handlebars', engine());
-app.set('views','/views');
+app.set('views','./viewsHandlebars');
 app.set('views engine','handlebars');
+app.set('views','./viewsPug');
+app.set('views engine','pug');
 
 
 app.use(express.json());
@@ -28,18 +30,28 @@ app.use((req,res,next)=>{
 app.use(express.static('public'));
 app.use('/api/productos',products);
 
-
-//GETS
-// app.get('/',(req,res)=>{
-//     res.send('Bienvenidos a la app')
-// })
-
+//GET
 app.get('/api/productRandom', (req,res)=>{
     contenedor.getRandom().then((result)=>{
         res.send(result.product);
         console.log(result.message);
     })
     
+})
+app.get('/viewHandlebars/products',(req,res)=>{
+    contenedor.getAll().then(result=>{
+        let info = result.product;
+        let preparedObject ={
+            products : info
+        }
+        res.render('products',preparedObject)
+    })
+})
+app.get('/viewPug/products',(req,res)=>{
+    contenedor.getAll().then(result=>{
+        let info = result.product;
+        res.render('products',info)
+    })
 })
 
 //POST
@@ -51,3 +63,4 @@ app.post('/api/uploadfile',upload.single('image'),(req,res)=>{
     }
     res.send(files)
 })
+

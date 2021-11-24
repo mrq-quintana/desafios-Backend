@@ -24,7 +24,7 @@ function enviarForm(event){
 document.getElementById("image").onchange = (e)=>{
     let read = new FileReader();
     read.onload = e =>{
-        document.querySelector('.image-text').innerHTML = "¡Qué hermoso!"
+        document.querySelector('.image-text').innerHTML = "Foto de producto"
         document.getElementById("preview").src = e.target.result;
     }
     
