@@ -15,23 +15,24 @@ app.engine('handlebars', engine());
 app.set('views','/views');
 app.set('views engine','handlebars');
 
+
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cors());
-app.use(express.static('/public'));
 app.use((req,res,next)=>{
     let timestamp = Date.now();
     let time = new Date(timestamp);
     console.log('Hora de petición: '+time.toTimeString().split(" ")[0]);
     next();
 })
+app.use(express.static('public'));
 app.use('/api/productos',products);
 
 
 //GETS
-app.get('/',(req,res)=>{
-    res.send('Bienvenidos a la app')
-})
+// app.get('/',(req,res)=>{
+//     res.send('Bienvenidos a la app')
+// })
 
 app.get('/api/productRandom', (req,res)=>{
     contenedor.getRandom().then((result)=>{
@@ -42,7 +43,7 @@ app.get('/api/productRandom', (req,res)=>{
 })
 
 //POST
-app.post('/api/uploadfile',upload.single('img'),(req,res)=>{
+app.post('/api/uploadfile',upload.single('image'),(req,res)=>{
     const files = req.file; 
     console.log(files);
     if(!files||files.length === 0){

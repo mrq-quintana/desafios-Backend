@@ -20,7 +20,7 @@ router.get('/:id', (req,res)=>{
     })
 })
 //POST
-router.post('/',upload.single('img'),(req, res)=>{
+router.post('/',upload.single('image'),(req, res)=>{
     let productoAgregar = req.body;
     productoAgregar.price = parseInt(productoAgregar.price);
     let thumbnail = 'http://localhost:8080/images/'+req.file.filename;
