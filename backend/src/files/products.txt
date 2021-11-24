@@ -33,5 +33,12 @@
     "price": 3000,
     "description": "kajhskjash",
     "thumbnail": "http://localhost:8080/images/1637722008374Lyon_Red_2(1).jpeg"
+  },
+  {
+    "id": 6,
+    "title": "lapicera",
+    "price": 100,
+    "description": "lapicera azul",
+    "thumbnail": "http://localhost:8080/images/1637796303718Lyon_Orange.jpeg"
   }
 ]
