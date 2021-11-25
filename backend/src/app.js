@@ -11,11 +11,14 @@ const server = app.listen(PORT,()=>{
 });
 const contenedor = new Contenedor();
 
-app.engine('handlebars', engine());
-app.set('views','./views');
-app.set('view engine','handlebars')
-// app.set('views','/viewsPug');
-// app.set('view engine','pug');
+// app.engine('handlebars', engine());
+// app.set('views','./viewsHandlebars');
+// app.set('view engine','handlebars');
+app.set('views','./viewsEjs');
+app.set('view engine','ejs')
+// app.set('views','./viewsPug');
+// app.set('view engine','pug')
+
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -37,19 +40,6 @@ app.get('/api/productRandom', (req,res)=>{
     })
     
 })
-app.get('/views/articulos',(req,res)=>{
-    contenedor.getAll().then(result=>{
-        let info = result.product;
-        console.log(info);
-        let infoObj ={
-            productos:info
-        }
-        console.log(infoObj);
-        res.render('articulos',infoObj)
-    })
-})
-
-
 //POST
 app.post('/api/uploadfile',upload.single('image'),(req,res)=>{
     const files = req.file; 
@@ -59,4 +49,50 @@ app.post('/api/uploadfile',upload.single('image'),(req,res)=>{
     }
     res.send(files)
 })
+
+//Motores de renderizado
+
+//Handlebars
+// app.get('/views/articulos/handlebars',(req,res)=>{
+//     contenedor.getAll().then(result=>{
+//         let info = result.product;
+//         console.log(info);
+//         let infoObj ={
+//             productos:info
+//         }
+//         console.log(infoObj);
+//         res.render('articulos',infoObj)
+//     })
+// })
+
+//Pug
+// app.get('/views/articulos/pug',(req,res)=>{
+//     contenedor.getAll().then(result=>{
+//         let info = result.product;
+//         console.log(info);
+//         let infoObj ={
+//             productos:info
+//             }
+//         res.render('articulos',infoObj)
+//     })
+// })
+
+//Ejs
+app.get('/views/articulos/ejs',(req,res)=>{
+    contenedor.getAll().then(result=>{
+        let info = result.product;
+        console.log(info);
+        let infoObj ={
+            title:info.title,
+            price:info.price,
+            description:info.description,
+            thumbnail:info.thumbnail
+
+            }
+        res.render('articulos.ejs',infoObj)
+    })
+})
+
+
+
 

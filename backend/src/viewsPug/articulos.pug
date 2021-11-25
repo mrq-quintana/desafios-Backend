@@ -1,0 +1,15 @@
+html 
+    head 
+        title="Articulos"
+    body 
+        h1="Articulo"
+        ul 
+            each producto in productos
+                li
+                    div 
+                        p=producto.title
+                        p=producto.price
+                        p 
+                            img(src=producto.thumbnail)
+                        p=producto.description
+                        
