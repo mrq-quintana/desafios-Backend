@@ -12,6 +12,33 @@ socket.on('actualiza', data=>{
         div.innerHTML= html;
     })
 })
+socket.on('chat',data=>{
+    alert(data.message);
+})
+
+let input = document.getElementById('idChat');
+let user = document.getElementById('user');
+input.addEventListener('keyup',(e)=>{
+    if(e.key==="Enter"){
+        if(e.target.value){
+            let timestamp = Date.now();
+            let time = new Date(timestamp);
+            socket.emit('msj', { user:user.value, message:e.target.value, hoy:time.toLocaleDateString() , hora:time.toTimeString().split(" ")[0]})
+        }else{
+            console.log('Mensaje vacio')
+        }
+    }
+})
+
+socket.on('log',data=>{
+    let p =document.getElementById('log');
+    let todosMsj = data.map(message=>{
+        return `<div>
+                    <span>${message.user} dice: ${message.message}, ${message.hoy}, ${message.hora}</span>
+                </div>`
+    }).join('');
+    p.innerHTML = todosMsj;
+})
 
 document.addEventListener('submit',enviarForm);
 
@@ -35,9 +62,6 @@ function enviarForm(event){
         })
     })
 }
-
-
-
 document.getElementById("image").onchange = (e)=>{
     let read = new FileReader();
     read.onload = e =>{

@@ -98,11 +98,22 @@ app.get('/views/articulos/handlebars',(req,res)=>{
 // })
 
 //Socket
+
+let mensajes = [];
+
 io.on('connection', async socket=>{
-    console.log(`El socket ${socket.id} se ha conectado`)
+    console.log(`El socket ${socket.id} se ha conectado`);
+    socket.emit('log',mensajes);
     let products = await contenedor.getAll();
-    socket.emit('actualiza', products);
-    
+    socket.emit('actualiza', products);    
+    socket.emit('chat',{message:'Chat'});
+
+    socket.on('msj', data=>{
+        mensajes.push(data)
+        io.emit('log',mensajes);
+    })
+
+
 })
 
 
