@@ -1,3 +1,18 @@
+const socket = io();
+
+socket.on('actualiza', data=>{
+    let prod = data.product;
+    fetch('templates/productsTable.handlebars').then(string=> string.text()).then(template=>{
+        const plantilla = Handlebars.compile(template);
+        const objPlantilla={
+            productos:prod
+        }
+        const html = plantilla(objPlantilla);
+        let div = document.getElementById('idProductos');
+        div.innerHTML= html;
+    })
+})
+
 document.addEventListener('submit',enviarForm);
 
 function enviarForm(event){
@@ -16,10 +31,12 @@ function enviarForm(event){
             icon:'success',
             timer:2000,
         }).then(result=>{
-            location.href='/'
+            // location.href='/'
         })
     })
 }
+
+
 
 document.getElementById("image").onchange = (e)=>{
     let read = new FileReader();
@@ -30,3 +47,4 @@ document.getElementById("image").onchange = (e)=>{
     
     read.readAsDataURL(e.target.files[0])
 }
+

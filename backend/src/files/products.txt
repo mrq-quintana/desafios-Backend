@@ -5,33 +5,5 @@
     "price": 1299,
     "description": "Remera de color blanco con estampa",
     "thumbnail": "http://localhost:8080/images/1637611560415Lyon_Cacique_Verde(1).jpeg"
-  },
-  {
-    "id": 2,
-    "title": "cacique azul",
-    "price": 1299,
-    "description": "Remera de color blanco con estampa",
-    "thumbnail": "http://localhost:8080/images/1637611605820Lyon_Cacique_Azul(1).jpeg"
-  },
-  {
-    "id": 3,
-    "title": "xaskjchklasj",
-    "price": 5000,
-    "description": "Pc de escritorio de aluminio",
-    "thumbnail": "http://localhost:8080/images/1637721517362Lyon_Cacique_Azul(1).jpeg"
-  },
-  {
-    "id": 5,
-    "title": "Termo de aluminio",
-    "price": 3000,
-    "description": "kajhskjash",
-    "thumbnail": "http://localhost:8080/images/1637722008374Lyon_Red_2(1).jpeg"
-  },
-  {
-    "id": 6,
-    "title": "lapicera",
-    "price": 100,
-    "description": "lapicera azul",
-    "thumbnail": "http://localhost:8080/images/1637796303718Lyon_Orange.jpeg"
   }
 ]

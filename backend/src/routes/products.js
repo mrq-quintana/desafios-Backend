@@ -1,6 +1,7 @@
 import express from 'express';
 import upload from '../service/upload.js';
 import Contenedor from '../classes/contenedor.js';
+import { io } from '../app.js';
 const router = express.Router();
 const contenedor = new Contenedor();
 
@@ -26,8 +27,13 @@ router.post('/',upload.single('image'),(req, res)=>{
     let thumbnail = 'http://localhost:8080/images/'+req.file.filename;
     productoAgregar.thumbnail = thumbnail;
     contenedor.saveProduct(productoAgregar).then(result=>{
-        res.send(result)
-        console.log(result.message);
+        res.send(result);
+
+        if(result){
+            contenedor.getAll().then(result=>{
+                io.emit('actualiza',result);
+            })
+        }
     })
 })
 

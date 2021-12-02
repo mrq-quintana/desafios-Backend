@@ -5,16 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg=="crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <title>Articulos</title>
 </head>
 
 <body>
     <input type="button" onclick="location.href='/views/articulos/handlebars'" value="Ver articulos / handlebars">
-    <input type="button" onclick="location.href='/views/articulos/pug'" value="Ver articulos / pug">
-    <input type="button" onclick="location.href='/views/articulos/ejs'" value="Ver articulos / ejs">
+    <!-- <input type="button" onclick="location.href='/views/articulos/pug'" value="Ver articulos / pug">
+    <input type="button" onclick="location.href='/views/articulos/ejs'" value="Ver articulos / ejs"> -->
     <div class="main-container">
         <div class="form-container">
             <h1 class="title">Gestor de articulos</h1>
@@ -51,7 +52,15 @@
         </div>
         </form>
     </div>
+    <h1>Tabla de productos</h1>
+    <div>
+        <div id="idProductos"></div>
     </div>
+    <!-- aca va la lista -->
+
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
     <script src="./index.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"
         integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg=="
