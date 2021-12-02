@@ -5,5 +5,12 @@
     "price": 1299,
     "description": "Remera de color blanco con estampa",
     "thumbnail": "http://localhost:8080/images/1637611560415Lyon_Cacique_Verde(1).jpeg"
+  },
+  {
+    "id": 2,
+    "title": "kljlk",
+    "price": 5000,
+    "description": "NOtebook pequeña",
+    "thumbnail": "http://localhost:8080/images/1638412368777253166678_629589521736314_8632507196596140917_n.jpg"
   }
 ]

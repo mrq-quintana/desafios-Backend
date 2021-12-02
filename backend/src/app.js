@@ -23,6 +23,8 @@ app.set('view engine','handlebars');
 // app.set('view engine','ejs')
 // app.set('views','./viewsPug');
 // app.set('view engine','pug')
+app.set('views','./viewsEjs');
+app.set('view engine','ejs')
 
 
 app.use(express.json());
@@ -55,7 +57,6 @@ app.post('/api/uploadfile',upload.single('image'),(req,res)=>{
     res.send(files)
 })
 
-//Motores de renderizado
 
 //Handlebars
 app.get('/views/articulos/handlebars',(req,res)=>{
@@ -74,7 +75,6 @@ app.get('/views/articulos/handlebars',(req,res)=>{
 // app.get('/views/articulos/pug',(req,res)=>{
 //     contenedor.getAll().then(result=>{
 //         let info = result.product;
-//         console.log(info);
 //         let infoObj ={
 //             productos:info
 //             }
@@ -86,7 +86,6 @@ app.get('/views/articulos/handlebars',(req,res)=>{
 // app.get('/views/articulos/ejs',(req,res)=>{
 //     contenedor.getAll().then(result=>{
 //         let info = result.product;
-//         console.log(info);
 //         let infoObj ={
 //             title:info.title,
 //             price:info.price,
