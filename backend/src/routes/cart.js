@@ -36,6 +36,14 @@ router.delete('/:id/productos/:id_prod', (req,res)=>{
 })
 
 //POST
+router.post('/:id/productos',(req, res)=>{
+    const carritoId = parseInt(req.params.id);
+    let productoAgregar = req.body;
+    carrito.addToCart(productoAgregar,carritoId).then(result=>{
+        res.send(result);
+
+    })
+})
 router.post('/',(req, res)=>{
     let productoAgregar = req.body;
     carrito.saveCart(productoAgregar).then(result=>{

@@ -40,6 +40,25 @@ class Carrito {
           console.log(error)
       }
     }
+    async addToCart(productoAgregar,id){
+      let cart = await fs.promises.readFile(rutaCarrito, "utf-8");
+      let cartJson = JSON.parse(cart);
+      let cartId = cartJson.find((i) => i.idCarrito === id);
+      let info = await fs.promises.readFile(rutaProductos, "utf-8");
+      let infoJson = JSON.parse(info);
+      productoAgregar.id.forEach(element => { 
+        let idAgregar= infoJson.find(i=> i.id===element)
+        cartId.productos.push(idAgregar);
+      }); 
+      if (cartId) {
+          await fs.promises.writeFile(rutaCarrito, JSON.stringify(cartJson, null, 2));
+          return { product: cartJson, message: "Id agregado correctamente al carrito "+id+" "};
+      } else {
+        return {
+          message: "No se pudo encontrar carrito con ese Id ",
+        };
+      }
+    }
     async getAll() {
       let info = await fs.promises.readFile(rutaCarrito, "utf-8");
       let infoJson = JSON.parse(info);
