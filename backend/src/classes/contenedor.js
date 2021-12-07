@@ -22,6 +22,8 @@ class Contenedor {
           title: productoAgregar.title,
           price: productoAgregar.price,
           description: productoAgregar.description,
+          codigo:productoAgregar.codigo,
+          stock:productoAgregar.stock,
           thumbnail :productoAgregar.thumbnail,
         };
 
@@ -41,9 +43,12 @@ class Contenedor {
     } catch (error) {
       let productos = {
         id: 1,
+        timestamp: time.toLocaleDateString() +" , "+ time.toTimeString().split(" ")[0],
         title: productoAgregar.title,
         price: productoAgregar.price,
         description: productoAgregar.description,
+        codigo:productoAgregar.codigo,
+        stock:productoAgregar.stock,
         thumbnail :productoAgregar.thumbnail,
       };
 
