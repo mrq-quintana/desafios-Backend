@@ -57,10 +57,9 @@ function enviarForm(event){
             text:json.message,
             icon:'success',
             timer:2000,
-        }).then(result=>{
-            // location.href='/'
         })
     })
+    document.getElementById('formProduct').reset();
 }
 document.getElementById("image").onchange = (e)=>{
     let read = new FileReader();

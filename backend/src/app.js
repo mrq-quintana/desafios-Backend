@@ -4,6 +4,7 @@ import cors from 'cors';
 import upload from './service/upload.js';
 import Contenedor from './classes/contenedor.js';
 import products from './routes/products.js';
+import cart from './routes/cart.js'
 import __dirname from './utils.js';
 import {Server} from 'socket.io'
 
@@ -19,19 +20,16 @@ export const io = new Server(server);
 app.engine('handlebars', engine());
 app.set('views',__dirname+'/viewsHandlebars');
 app.set('view engine','handlebars');
-// app.set('views','./viewsEjs');
-// app.set('view engine','ejs')
-// app.set('views','./viewsPug');
-// app.set('view engine','pug')
-app.set('views','./viewsEjs');
-app.set('view engine','ejs')
 
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cors());
 app.use(express.static(__dirname+'/public'));
+
 app.use('/api/productos',products);
+app.use('/api/carrito',cart);
+
 app.use((req,res,next)=>{
     let timestamp = Date.now();
     let time = new Date(timestamp);
@@ -56,9 +54,7 @@ app.post('/api/uploadfile',upload.single('image'),(req,res)=>{
     }
     res.send(files)
 })
-
-
-//Handlebars
+//HANDLEBARS
 app.get('/views/articulos/handlebars',(req,res)=>{
     contenedor.getAll().then(result=>{
         let info = result.product;
@@ -70,37 +66,8 @@ app.get('/views/articulos/handlebars',(req,res)=>{
         res.render('articulos',infoObj)
     })
 })
-
-//Pug
-// app.get('/views/articulos/pug',(req,res)=>{
-//     contenedor.getAll().then(result=>{
-//         let info = result.product;
-//         let infoObj ={
-//             productos:info
-//             }
-//         res.render('articulos',infoObj)
-//     })
-// })
-
-//Ejs
-// app.get('/views/articulos/ejs',(req,res)=>{
-//     contenedor.getAll().then(result=>{
-//         let info = result.product;
-//         let infoObj ={
-//             title:info.title,
-//             price:info.price,
-//             description:info.description,
-//             thumbnail:info.thumbnail
-
-//             }
-//         res.render('articulos.ejs',infoObj)
-//     })
-// })
-
-//Socket
-
+//SOCKET
 let mensajes = [];
-
 io.on('connection', async socket=>{
     console.log(`El socket ${socket.id} se ha conectado`);
     socket.emit('log',mensajes);

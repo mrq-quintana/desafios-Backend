@@ -1,16 +1,26 @@
 [
   {
     "id": 1,
-    "title": "cacique verde",
-    "price": 1299,
-    "description": "Remera de color blanco con estampa",
-    "thumbnail": "http://localhost:8080/images/1637611560415Lyon_Cacique_Verde(1).jpeg"
+    "timestamp": "6/12/2021 , 22:47:21",
+    "title": "Leon 777",
+    "price": 1500,
+    "description": "Leon con triple 7",
+    "thumbnail": "http://localhost:8080/images/1638841641979Lyon_777(2).jpeg"
   },
   {
     "id": 2,
-    "title": "kljlk",
-    "price": 5000,
-    "description": "NOtebook pequeña",
-    "thumbnail": "http://localhost:8080/images/1638412368777253166678_629589521736314_8632507196596140917_n.jpg"
+    "timestamp": "6/12/2021 , 22:52:45",
+    "title": "Cacique amarillo",
+    "price": 1600,
+    "description": "Cacique amarillo",
+    "thumbnail": "http://localhost:8080/images/1638841965879Lyon_Cacique_Amarillo(1).jpeg"
+  },
+  {
+    "id": 3,
+    "timestamp": "6/12/2021 , 22:54:44",
+    "title": "Leon Rojo",
+    "price": 1300,
+    "description": "Leon rojo",
+    "thumbnail": "http://localhost:8080/images/1638842084593Lyon_Red_2(1).jpeg"
   }
 ]

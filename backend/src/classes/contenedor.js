@@ -14,8 +14,11 @@ class Contenedor {
           message: 'El producto ' + productoAgregar.title + ' ya existe'
         };
       } else {
+        let timestamp = Date.now();
+        let time = new Date(timestamp);
         let productos = {
           id: parseInt(infoJson.length + 1),
+          timestamp: time.toLocaleDateString() +" , "+ time.toTimeString().split(" ")[0],
           title: productoAgregar.title,
           price: productoAgregar.price,
           description: productoAgregar.description,
