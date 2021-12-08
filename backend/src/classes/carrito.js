@@ -40,25 +40,31 @@ class Carrito {
           console.log(error)
       }
     }
-    async addToCart(productoAgregar,id){
+    async addToCart(idAgregar,idCarrito){
       let cart = await fs.promises.readFile(rutaCarrito, "utf-8");
       let cartJson = JSON.parse(cart);
-      let cartId = cartJson.find((i) => i.idCarrito === id);
       let info = await fs.promises.readFile(rutaProductos, "utf-8");
       let infoJson = JSON.parse(info);
-      productoAgregar.id.forEach(element => { 
-        let idAgregar= infoJson.find(i=> i.id===element)
-        cartId.productos.push(idAgregar);
-      }); 
-      if (cartId) {
+      
+      let cartId = cartJson.find((i) => i.idCarrito === idCarrito);
+
+      if (cartId){  
+       idAgregar.id.map(id => { 
+            let idAdd= infoJson.find(i=> i.id===id)
+              if(idAdd!==undefined){
+                cartId.productos.push(idAdd);}
+        });
+
+
           await fs.promises.writeFile(rutaCarrito, JSON.stringify(cartJson, null, 2));
-          return { product: cartJson, message: "Id agregado correctamente al carrito "+id+" "};
-      } else {
-        return {
-          message: "No se pudo encontrar carrito con ese Id ",
-        };
+
+          return { message: "Id agregado correctamente al carrito "+idCarrito+" "};
+        
+      }else{
+        return { message: "El carrito no existe "};
       }
-    }
+
+      }
     async getAll() {
       let info = await fs.promises.readFile(rutaCarrito, "utf-8");
       let infoJson = JSON.parse(info);
@@ -106,22 +112,27 @@ class Carrito {
         };
       }
     }
-    async deleteProductById(id,id_prod) {
+    async deleteProductById(idCarrito,id_prod) {
       let info = await fs.promises.readFile(rutaCarrito, "utf-8");
       let infoJson = JSON.parse(info);
-      let infoId = infoJson.find((i) => i.idCarrito === id);
-      let productoEliminado = infoId.productos.find((i) => i.id !== id_prod);
-      infoId.productos=[];
-      infoId.productos.push(productoEliminado);
-      if (infoId) {
-        await fs.promises.writeFile(rutaCarrito, JSON.stringify(infoJson, null, 2));
-        return {
-          // product: infoIdEliminado,
-          message: "Producto con id "+id_prod+" eliminado del carrito con id " + id +"",
-        };
+      let infoId = infoJson.find((i) => i.idCarrito === idCarrito);
+      if(infoId){
+          let productoEliminado = infoId.productos.filter((i) => i.id !== id_prod);
+          let productoIdencontrado = infoId.productos.find((i) => i.id === id_prod);
+          if(!productoIdencontrado){
+            return {
+              message: "No existe el producto en el carrito",  
+            };
+          }else{
+            infoId.productos=[...productoEliminado];
+            await fs.promises.writeFile(rutaCarrito, JSON.stringify(infoJson, null, 2));
+            return {
+              message: "Producto con id "+id_prod+" eliminado del carrito con id " + idCarrito +"",
+            };
+          }
       } else {
         return {
-          message: "No existe el carrito para eliminar",
+          message: "No existe el carrito",  
         };
       }
     }

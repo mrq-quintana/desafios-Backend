@@ -7,6 +7,7 @@ import products from './routes/products.js';
 import cart from './routes/cart.js'
 import __dirname from './utils.js';
 import {Server} from 'socket.io'
+import { authAdmin } from './utils.js';
 
 const app = express();
 const PORT = process.env.PORT||8080;
@@ -21,20 +22,24 @@ app.engine('handlebars', engine());
 app.set('views',__dirname+'/viewsHandlebars');
 app.set('view engine','handlebars');
 
-
+const admin = true;
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cors());
-app.use(express.static(__dirname+'/public'));
-
-app.use('/api/productos',products);
-app.use('/api/carrito',cart);
 
 app.use((req,res,next)=>{
     let timestamp = Date.now();
     let time = new Date(timestamp);
-    console.log('Hora de petición: '+time.toTimeString().split(" ")[0]);
+    console.log('Hora de petición: '+time.toTimeString().split(" ")[0],req.method,req.url);
+    req.auth = admin;
     next();
+})
+app.use(express.static(__dirname+'/public'));
+app.use('/api/productos',products);
+app.use('/api/carrito',cart);
+app.use((req,res,next)=>{
+    res.status(404).send({error:-1,message:"La ruta que desea ingresar no existe"})
+    console.log("La ruta que desea ingresar no existe");
 })
 
 //GET
@@ -55,14 +60,14 @@ app.post('/api/uploadfile',upload.single('image'),(req,res)=>{
     res.send(files)
 })
 //HANDLEBARS
-app.get('/views/articulos/handlebars',(req,res)=>{
+app.get('/views/articulos',authAdmin,(req,res)=>{
     contenedor.getAll().then(result=>{
         let info = result.product;
-        console.log(info);
+        // console.log(info);
         let infoObj ={
             productos:info
         }
-        console.log(infoObj);
+        // console.log(infoObj);
         res.render('articulos',infoObj)
     })
 })
@@ -70,13 +75,11 @@ app.get('/views/articulos/handlebars',(req,res)=>{
 let mensajes = [];
 io.on('connection', async socket=>{
     console.log(`El socket ${socket.id} se ha conectado`);
-    socket.emit('log',mensajes);
+        socket.emit('log',mensajes);
     let products = await contenedor.getAll();
-    socket.emit('actualiza', products);    
-    socket.emit('chat',{message:'Chat'});
-
-    socket.on('msj', data=>{
-        mensajes.push(data)
+        socket.emit('actualiza', products);    
+        socket.on('msj', data=>{
+            mensajes.push(data)
         io.emit('log',mensajes);
     })
 

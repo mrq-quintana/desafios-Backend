@@ -12,9 +12,6 @@ socket.on('actualiza', data=>{
         div.innerHTML= html;
     })
 })
-socket.on('chat',data=>{
-    alert(data.message);
-})
 
 let input = document.getElementById('idChat');
 let user = document.getElementById('user');

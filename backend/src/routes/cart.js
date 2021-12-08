@@ -27,9 +27,9 @@ router.delete('/:id', (req,res)=>{
     })
 })
 router.delete('/:id/productos/:id_prod', (req,res)=>{
-    const carritoId = parseInt(req.params.id);
-    const productoId = parseInt(req.params.id_prod)
-    carrito.deleteProductById(carritoId,productoId).then((result)=>{
+    const idCarrito = parseInt(req.params.id);
+    const id_prod = parseInt(req.params.id_prod)
+    carrito.deleteProductById(idCarrito,id_prod).then((result)=>{
         res.send(result);
         
     })
@@ -37,9 +37,9 @@ router.delete('/:id/productos/:id_prod', (req,res)=>{
 
 //POST
 router.post('/:id/productos',(req, res)=>{
-    const carritoId = parseInt(req.params.id);
-    let productoAgregar = req.body;
-    carrito.addToCart(productoAgregar,carritoId).then(result=>{
+    const idCarrito = parseInt(req.params.id);
+    let idAgregar = req.body;
+    carrito.addToCart(idAgregar,idCarrito).then(result=>{
         res.send(result);
 
     })
